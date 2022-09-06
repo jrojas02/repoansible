@@ -12,10 +12,3 @@
           state: suspend
       state: merged
     register: vln
-
-  - debug:
-      var: vln.before
-  - debug:
-      var: vln.commands
-  - debug:
-      var: vln.after

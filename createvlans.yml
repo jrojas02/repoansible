@@ -1,5 +1,7 @@
 ---
 - name: Configurar VLAN
+  gather_facts: true
+  connection: local
   hosts: switchs
 
   tasks:

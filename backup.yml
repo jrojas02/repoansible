@@ -1,18 +1,21 @@
 ---
-- hosts: SW-01
-  gather_facts: true
-  connection: local
+- name: Configurar VLAN
+  hosts: switchs
 
   tasks:
-  - name: show run
-    ios_command:
-      commands:
-        - show run
-      host: "{{ ansible_host }}"
-      username: cisco
-      passdword: Sistemas11
-      register: config
-  - name: save
-    copy:
-    content: "{{ config.stdout[0]}}"
-    dest: "home/ansibledemo/backups/show_run{{ inventory_hostname }}.txt"
+  - name: Crear VLAN
+    ios_vlans:
+      config:
+        - name: vlan_100
+          vlan_id: 100
+          shutdown: enabled
+          state: suspend
+      state: merged
+    register: vln
+
+  - debug:
+    var: vln.before
+  - debug:
+    var: vln.commands
+  - debug:
+    var: vln.after

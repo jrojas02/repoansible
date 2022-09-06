@@ -14,8 +14,8 @@
     register: vln
 
   - debug:
-    var: vln.before
+      var: vln.before
   - debug:
-    var: vln.commands
+      var: vln.commands
   - debug:
-    var: vln.after
+      var: vln.after

@@ -3,7 +3,7 @@
   hosts: vm-ubuntu
   become: yes
   vars_files:
-      - vars/default.yml
+      - ../vars/default.yml
 
   tasks:
   - name: Install latest version of Apache
@@ -26,7 +26,7 @@
     template:
       src: "files/apache-template.conf"
       dest: "/etc/apache2/sites-available/{{ http_conf }}"
-      
+
   - name: Enable site
     command: a2ensite {{ http_conf }}
     notify: restart-apache

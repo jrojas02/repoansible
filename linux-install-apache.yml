@@ -1,0 +1,7 @@
+---
+- name: Install IIS web services
+  hosts: vm-ubuntu
+
+  tasks:
+  - name: Install latest version of Apache
+    apt: name=apache2 update_cache=yes state=latest

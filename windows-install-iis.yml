@@ -1,0 +1,19 @@
+---
+- name: Install IIS web services
+  hosts: vm001
+
+  tasks:
+  - name: Install IIS
+    win_feature:
+      name: Web-Server
+      state: present
+
+  - name: start IIS service
+    win_service:
+      name: W3Svc
+      state: started
+
+  - name: create index.html
+    win_copy:
+      name:  "Electrodata demo IIS"
+      dest: C:\Inetpub\wwwroot\index.html

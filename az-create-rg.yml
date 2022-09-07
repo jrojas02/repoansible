@@ -1,5 +1,5 @@
 ---
-- name: Crear un RG 
+- name: Crear un RGx
   azure_rm_resourcegroup:
     name: ansible-rg
     location: eastus

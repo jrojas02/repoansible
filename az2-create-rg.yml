@@ -1,7 +1,14 @@
 ---
 - name: Crear un RG 
-  azure_rm_resourcegroup:
-    name: ansible-rg
-    locaiton: eastus
-  tags:
-    testing: testing
+  gather_facts: true
+  connection: local
+  hosts: azure-resource-manager
+
+  tasks:
+  - name: Crear RG
+    azure_rm_resourcegroup:
+      name: ansible-rg
+      location: eastus
+    register: rg
+  - debug:
+      var: rg

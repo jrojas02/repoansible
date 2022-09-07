@@ -2,6 +2,6 @@
 - name: Crear un RG 
   azure_rm_resourcegroup:
     name: ansible-rg
-    locaiton: eastus
+    location: eastus
   tags:
     testing: testing

@@ -30,3 +30,14 @@
   - name: Enable site
     shell: a2ensite {{ http_conf }}
     notify: Reload Apache
+    
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted

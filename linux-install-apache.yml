@@ -29,4 +29,4 @@
 
   - name: Enable site
     command: a2ensite {{ http_conf }}
-    notify: restart-apache
+    notify: Reload Apache

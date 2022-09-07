@@ -2,6 +2,7 @@
 - name: Crear un RG 
   gather_facts: true
   connection: local
+  hosts: azure-resource-manager
 
   tasks:
   - name: Crear RG

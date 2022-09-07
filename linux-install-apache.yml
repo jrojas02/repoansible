@@ -1,8 +1,32 @@
 ---
-- name: Install IIS web services
+- name: Install y Configurar Apache services
   hosts: vm-ubuntu
   become: yes
+  vars_files:
+      - vars/default.yml
 
   tasks:
   - name: Install latest version of Apache
     apt: name=apache2 update_cache=yes state=latest
+
+  - name: Create document root for domain configured in host variable
+    file:
+      path: "/var/www/{{ http_host }}"
+      state: directory
+      owner: www-data
+      group: www-data
+      mode: '0755'
+  
+  - name: Copy your index file
+    template:
+      src: "files/index-template.html"
+      dest: "/var/www/{{ http_host }}/index.html"
+
+  - name: Set up virtuahHost
+    template:
+      src: "files/apache-template.conf"
+      dest: "/etc/apache2/sites-available/{{ http_conf }}"
+      
+  - name: Enable site
+    command: a2ensite {{ http_conf }}
+    notify: restart-apache

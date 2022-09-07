@@ -1,12 +1,6 @@
 ---
-- name: Crear un RG 
-  gather_facts: true
-
-  tasks:
-  - name: Crear RG
-    azure_rm_resourcegroup:
-      name: ansible-rg
-      location: eastus
-    register: rg
-  - debug:
-      var: rg
+- name: Create storage account
+  azure_rm_storageaccount:
+    resource_group: Testing
+    name: testaccount001
+    account_type: Standard_LRS

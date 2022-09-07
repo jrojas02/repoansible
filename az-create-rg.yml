@@ -2,7 +2,7 @@
 - name: Crear un RG 
   gather_facts: true
   connection: local
-  hosts: switchs
+  hosts: singularity-suscription
 
   tasks:
   - name: Crear RG
